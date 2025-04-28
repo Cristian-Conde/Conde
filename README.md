@@ -378,11 +378,3 @@ Tus ejercicios en esta parte son:
 ✅ Todos los objetos pueden ser tratados de la misma forma, pero su comportamiento cambia.
 ✅ Ejemplo clásico: en un for puedes recorrer distintos objetos y que cada uno actúe diferente.
 
-### 🏆 Conclusión General
-Aplicaste correctamente encapsulamiento para proteger datos sensibles.
-
-Implementaste polimorfismo para que diferentes clases compartan un mismo método con diferente comportamiento.
-
-Tu código respeta buenas prácticas de programación orientada a objetos (POO).
-
-Faltaría solamente agregar comentarios/documentación tipo docstring para hacerlo aún más profesional.
