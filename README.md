@@ -349,8 +349,7 @@ for t in transportes:
 
 
 # 📄 Resumen General de tus ejercicios
-# Tema:
-## Encapsulamiento y Polimorfismo en Programación Orientada a Objetos (POO) usando Python.
+## Tema: Encapsulamiento y Polimorfismo en Programación Orientada a Objetos (POO) usando Python.
 
 ### 🧩 Parte 1: Encapsulamiento
 El encapsulamiento es proteger los atributos internos de una clase para que no puedan modificarse directamente desde fuera, sino solo usando métodos especiales (@property, @setter, métodos públicos).
