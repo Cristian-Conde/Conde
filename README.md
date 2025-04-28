@@ -1,6 +1,6 @@
-#ENCAPSULAMIENTO
+# ENCAPSULAMIENTO
 
-# Ejercicio l
+## Ejercicio l
 
 class Empleado:
     def __init__(self, nombre, rol, clave):
@@ -24,9 +24,7 @@ class Empleado:
             self._clave_acceso = self._cifrar(nueva_clave)
             return True
         return False
-
-### TESTING:
-
+        
 emp = Empleado("Fabian", "supervisor", "Hellokitty")
 print(emp.verificar_clave("Hellokitty"))  # Debería imprimir True
 emp.cambiar_clave("Hellokitty", "Kdrama")
@@ -65,11 +63,11 @@ class Estudiante:
         if isinstance(nota, (int, float)) and 0.0 <= nota <= 5.0:
             self.__notas.append(float(nota))
         else:
-            raise ValueError("La nota debe estar entre 0.0 y 5.0.")
+            raise ValueError("La nota debe estar entre 0.0 y 5.0.")   
     def calcular_promedio(self):
         if self.__notas:
             return sum(self.__notas) / len(self.__notas)
-        return 0.0
+        return 0.0  
     def es_aprobado(self):
         return self.calcular_promedio() >= 3.0
 
@@ -89,27 +87,24 @@ print("¿Aprobado?:", e1.es_aprobado())
 # POLIMORFISMO
 
 
-# Ejercicio 1 
+## Ejercicio 1 
 
 class Empleado:
     def __init__(self, nombre, sueldo_base):
         self.nombre = nombre
-        self.sueldo_base = sueldo_base
+        self.sueldo_base = sueldo_base  
     def calcular_salario(self):
         pass  # Método que será sobreescrito por las subclases
-
 class EmpleadoFijo(Empleado):
     def calcular_salario(self):
         bono = 500
         return self.sueldo_base + bono
-
 class EmpleadoPorHoras(Empleado):
     def __init__(self, nombre, sueldo_base, horas_trabajadas):
         super().__init__(nombre, sueldo_base)
         self.horas_trabajadas = horas_trabajadas
     def calcular_salario(self):
         return self.sueldo_base * self.horas_trabajadas
-
 class EmpleadoTemporal(Empleado):
     def calcular_salario(self):
         return self.sueldo_base * 0.8
