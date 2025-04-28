@@ -1,6 +1,6 @@
 # ENCAPSULAMIENTO
 
-## Ejercicio l
+## Ejercicio 1
 
 class Empleado:
     def __init__(self, nombre, rol, clave):
@@ -92,24 +92,29 @@ print("¿Aprobado?:", e1.es_aprobado())
 class Empleado:
     def __init__(self, nombre, sueldo_base):
         self.nombre = nombre
-        self.sueldo_base = sueldo_base  
+        self.sueldo_base = sueldo_base
     def calcular_salario(self):
-        pass  # Método que será sobreescrito por las subclases
+        pass  # Método que será sobrescrito por las subclases
+
 class EmpleadoFijo(Empleado):
     def calcular_salario(self):
         bono = 500
         return self.sueldo_base + bono
+
 class EmpleadoPorHoras(Empleado):
     def __init__(self, nombre, sueldo_base, horas_trabajadas):
         super().__init__(nombre, sueldo_base)
         self.horas_trabajadas = horas_trabajadas
     def calcular_salario(self):
         return self.sueldo_base * self.horas_trabajadas
+
 class EmpleadoTemporal(Empleado):
     def calcular_salario(self):
         return self.sueldo_base * 0.8
 
+# PROGRAMA PRINCIPAL
 print("=== Cálculo de salarios con polimorfismo ===")
+
 empleados = [
     EmpleadoFijo("Ana", 1500),
     EmpleadoPorHoras("Luis", 15, 120),
@@ -118,3 +123,30 @@ empleados = [
 
 for emp in empleados:
     print(f"{emp.nombre} gana: ${emp.calcular_salario():.2f}")
+
+## Ejercicio 2
+
+#Clase base
+class Transporte:
+    def tipo_transporte(self):
+        print("Tipo de transporte genérico")
+
+#Clases hijas con su propio comportamiento
+class Coche(Transporte):
+    def tipo_transporte(self):
+        print("Transporte terrestre")
+
+class Avion(Transporte):
+    def tipo_transporte(self):
+        print("Transporte aéreo")
+
+class Barco(Transporte):
+    def tipo_transporte(self):
+        print("Transporte marítimo")
+
+#TESTING 
+transportes = [Coche(), Avion(), Barco()]
+
+for t in transportes:
+    t.tipo_transporte()
+
