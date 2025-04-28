@@ -62,7 +62,6 @@ print("¿Aprobado?:", e1.es_aprobado())
 ## Ejercicio 2
 
 class CarteraCripto:
-
     def __init__(self, usuario):
         self.__usuario = usuario
         self.__saldo_btc = 0.0  # Saldo inicial en BTC
