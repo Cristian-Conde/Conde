@@ -1,24 +1,83 @@
 # ENCAPSULAMIENTO
 
-## Ejercicio 1
+## Ejercicio 2
+
+class CarteraCripto:
+
+    def __init__(self, usuario):
+        self.__usuario = usuario
+        self.__saldo_btc = 0.0  # Saldo inicial en BTC
+        
+    def consultar_saldo(self):
+        print(f"Usuario: {self.__usuario}")
+        print(f"Saldo BTC: {self.__saldo_btc:.8f} BTC")
+        
+    def comprar_btc(self, monto_usd, precio_actual_btc):
+        if monto_usd > 0 and precio_actual_btc > 0:
+            btc_comprado = monto_usd / precio_actual_btc
+            self.__saldo_btc += btc_comprado
+            print(f"Compra exitosa: {btc_comprado:.8f} BTC añadidos.")
+        else:
+            print("Monto en USD y precio de BTC deben ser positivos.")
+            
+    def vender_btc(self, monto_btc, precio_actual_btc):
+        if monto_btc > 0 and precio_actual_btc > 0:
+            if monto_btc <= self.__saldo_btc:
+                usd_recibido = monto_btc * precio_actual_btc
+                self.__saldo_btc -= monto_btc
+                print(f"Venta exitosa: recibiste ${usd_recibido:.2f} USD.")
+            else:
+                print("Error: No tienes suficiente BTC para vender.")
+        else:
+            print("Monto de BTC y precio actual deben ser positivos.")
+            
+#TESTING
+
+#Crear cartera
+cartera = CarteraCripto("Cristian")
+
+#Consultar saldo inicial
+cartera.consultar_saldo()
+
+#Comprar BTC
+cartera.comprar_btc(monto_usd=1000, precio_actual_btc=50000)  # Compra con 1000 USD
+
+#Consultar saldo después de la compra
+cartera.consultar_saldo()
+
+#Vender BTC
+cartera.vender_btc(monto_btc=0.01, precio_actual_btc=60000)  # Vende 0.01 BTC
+
+#Consultar saldo final
+cartera.consultar_saldo()
+
+
+## Ejercicio 3
 
 class Empleado:
+
     def __init__(self, nombre, rol, clave):
         self.__nombre = nombre
         self.__rol = rol
         self._clave_acceso = self._cifrar(clave)
+        
     def _cifrar(self, texto):
         return texto[::-1]
+        
     def _decifrar(self, clave_encriptada):
         return clave_encriptada[::-1]  # Invertir la clave
+        
     @property
     def nombre(self):
         return self.__nombre
+        
     @property
     def rol(self):
         return self.__rol
+        
     def verificar_clave(self, clave_ingresada):
         return self._cifrar(clave_ingresada) == self._clave_acceso
+        
     def cambiar_clave(self, clave_antigua, nueva_clave):
         if self.verificar_clave(clave_antigua):
             self._clave_acceso = self._cifrar(nueva_clave)
@@ -32,15 +91,17 @@ print(emp.verificar_clave("Kdrama"))      # Debería imprimir True
 
 
 
-# Ejercicio 2
+## Ejercicio 2
 
 class Estudiante:
+
     def __init__(self, nombre, codigo):
         self.__nombre = None
         self.__codigo = None
         self.__notas = []
         self.nombre = nombre  # Usamos el setter
         self.codigo = codigo  # Usamos el setter
+        
     @property
     def nombre(self):
         return self.__nombre
@@ -50,28 +111,33 @@ class Estudiante:
             self.__nombre = nuevo_nombre.strip()
         else:
             raise ValueError("El nombre no puede estar vacío.")
+            
     @property
     def codigo(self):
         return self.__codigo
     @codigo.setter
+    
     def codigo(self, nuevo_codigo):
         if isinstance(nuevo_codigo, str) and nuevo_codigo.isalnum():
             self.__codigo = nuevo_codigo
         else:
             raise ValueError("El código debe ser alfanumérico.")
+            
     def agregar_nota(self, nota):
         if isinstance(nota, (int, float)) and 0.0 <= nota <= 5.0:
             self.__notas.append(float(nota))
         else:
             raise ValueError("La nota debe estar entre 0.0 y 5.0.")   
+            
     def calcular_promedio(self):
         if self.__notas:
             return sum(self.__notas) / len(self.__notas)
         return 0.0  
+        
     def es_aprobado(self):
         return self.calcular_promedio() >= 3.0
 
-### TESTING
+#TESTING
 e1 = Estudiante("Cristian Conde", "A1")
 e1.agregar_nota(4.0)
 e1.agregar_nota(5.0)
@@ -90,18 +156,22 @@ print("¿Aprobado?:", e1.es_aprobado())
 ## Ejercicio 1 
 
 class Empleado:
+
     def __init__(self, nombre, sueldo_base):
         self.nombre = nombre
         self.sueldo_base = sueldo_base
+        
     def calcular_salario(self):
         pass  # Método que será sobrescrito por las subclases
 
 class EmpleadoFijo(Empleado):
+
     def calcular_salario(self):
         bono = 500
         return self.sueldo_base + bono
 
 class EmpleadoPorHoras(Empleado):
+
     def __init__(self, nombre, sueldo_base, horas_trabajadas):
         super().__init__(nombre, sueldo_base)
         self.horas_trabajadas = horas_trabajadas
@@ -109,6 +179,7 @@ class EmpleadoPorHoras(Empleado):
         return self.sueldo_base * self.horas_trabajadas
 
 class EmpleadoTemporal(Empleado):
+
     def calcular_salario(self):
         return self.sueldo_base * 0.8
 
