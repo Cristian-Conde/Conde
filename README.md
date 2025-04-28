@@ -36,5 +36,5 @@ print(emp.verificar_clave("Hellokitty"))
 emp.cambiar_clave("Hellokitty", "Kdrama")
 print(emp.verificar_clave("Kdrama"))
 
-###Este programa maneja la información de un empleado de forma privada y segura, y permite verificar y cambiar su clave de acceso de manera controlada##
+##Este programa maneja la información de un empleado de forma privada y segura, y permite verificar y cambiar su clave de acceso de manera controlada
 
