@@ -348,26 +348,26 @@ for t in transportes:
 
 
 
-📄 Resumen General de tus ejercicios
-Tema:
-Encapsulamiento y Polimorfismo en Programación Orientada a Objetos (POO) usando Python.
+# 📄 Resumen General de tus ejercicios
+# Tema:
+## Encapsulamiento y Polimorfismo en Programación Orientada a Objetos (POO) usando Python.
 
-🧩 Parte 1: Encapsulamiento
+### 🧩 Parte 1: Encapsulamiento
 El encapsulamiento es proteger los atributos internos de una clase para que no puedan modificarse directamente desde fuera, sino solo usando métodos especiales (@property, @setter, métodos públicos).
 
 Tus ejercicios en esta parte son:
 
 
-Ejercicio	Descripción general
-1. Estudiante	Modela un estudiante que tiene nombre, código y lista de notas. Protege atributos, permite agregar notas, calcular promedio y saber si aprobó.
-2. CarteraCripto	Simula una billetera de criptomonedas (Bitcoin). Permite consultar saldo, comprar BTC con USD y vender BTC para recibir USD. Todo protegido.
-3. Empleado	Crea un empleado que tiene una clave cifrada. Permite verificar y cambiar la clave, protegiendo el acceso.
-4. Persona, Paciente, Doctor	Modela personas en un hospital. Un paciente tiene historial médico y diagnóstico. Un doctor puede modificar el diagnóstico de un paciente. Encapsula los atributos y controla el acceso.
+### Ejercicio	Descripción general
+1. Estudiante: Modela un estudiante que tiene nombre, código y lista de notas. Protege atributos, permite agregar notas, calcular promedio y saber si aprobó.
+2. CarteraCripto:	Simula una billetera de criptomonedas (Bitcoin). Permite consultar saldo, comprar BTC con USD y vender BTC para recibir USD. Todo protegido.
+3. Empleado:	Crea un empleado que tiene una clave cifrada. Permite verificar y cambiar la clave, protegiendo el acceso.
+4. Persona, Paciente, Doctor:	Modela personas en un hospital. Un paciente tiene historial médico y diagnóstico. Un doctor puede modificar el diagnóstico de un paciente. Encapsula los atributos y controla el acceso.
 ✅ Todos los atributos importantes son privados (__atributo)
 ✅ Se usan @property y @setter para acceso controlado.
 ✅ Se hacen validaciones (edad positiva, nombre no vacío, clave segura, etc.).
 
-🧩 Parte 2: Polimorfismo
+### 🧩 Parte 2: Polimorfismo
 El polimorfismo en programación es que diferentes clases pueden tener métodos con el mismo nombre, pero con comportamientos distintos.
 
 Tus ejercicios en esta parte son:
@@ -379,7 +379,7 @@ Ejercicio	Descripción general
 ✅ Todos los objetos pueden ser tratados de la misma forma, pero su comportamiento cambia.
 ✅ Ejemplo clásico: en un for puedes recorrer distintos objetos y que cada uno actúe diferente.
 
-🏆 Conclusión General
+### 🏆 Conclusión General
 Aplicaste correctamente encapsulamiento para proteger datos sensibles.
 
 Implementaste polimorfismo para que diferentes clases compartan un mismo método con diferente comportamiento.
