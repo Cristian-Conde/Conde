@@ -1,5 +1,64 @@
 # ENCAPSULAMIENTO
 
+## Ejercicio 1
+
+class Estudiante:
+
+    def __init__(self, nombre, codigo):
+        self.__nombre = None
+        self.__codigo = None
+        self.__notas = []
+        self.nombre = nombre  # Usamos el setter
+        self.codigo = codigo  # Usamos el setter
+        
+    @property
+    def nombre(self):
+        return self.__nombre
+        
+    @nombre.setter
+    def nombre(self, nuevo_nombre):
+        if isinstance(nuevo_nombre, str) and nuevo_nombre.strip():
+            self.__nombre = nuevo_nombre.strip()
+        else:
+            raise ValueError("El nombre no puede estar vacío.")
+            
+    @property
+    def codigo(self):
+        return self.__codigo
+    @codigo.setter
+    
+    def codigo(self, nuevo_codigo):
+        if isinstance(nuevo_codigo, str) and nuevo_codigo.isalnum():
+            self.__codigo = nuevo_codigo
+        else:
+            raise ValueError("El código debe ser alfanumérico.")
+            
+    def agregar_nota(self, nota):
+        if isinstance(nota, (int, float)) and 0.0 <= nota <= 5.0:
+            self.__notas.append(float(nota))
+        else:
+            raise ValueError("La nota debe estar entre 0.0 y 5.0.")   
+            
+    def calcular_promedio(self):
+        if self.__notas:
+            return sum(self.__notas) / len(self.__notas)
+        return 0.0  
+        
+    def es_aprobado(self):
+        return self.calcular_promedio() >= 3.0
+
+### TESTING
+e1 = Estudiante("Cristian Conde", "A1")
+e1.agregar_nota(4.0)
+e1.agregar_nota(5.0)
+e1.agregar_nota(4.5)
+
+print("Nombre:", e1.nombre)
+print("Código:", e1.codigo)
+print("Promedio:", e1.calcular_promedio())
+print("¿Aprobado?:", e1.es_aprobado())
+
+
 ## Ejercicio 2
 
 class CarteraCripto:
@@ -31,7 +90,7 @@ class CarteraCripto:
         else:
             print("Monto de BTC y precio actual deben ser positivos.")
             
-#TESTING
+### TESTING
 
 #Crear cartera
 cartera = CarteraCripto("Cristian")
@@ -84,71 +143,125 @@ class Empleado:
             return True
         return False
         
-#TESTING
+### TESTING
 emp = Empleado("Fabian", "supervisor", "Hellokitty")
-print(emp.verificar_clave("Hellokitty"))  # Debería imprimir True
+print(emp.verificar_clave("Hellokitty"))  
 emp.cambiar_clave("Hellokitty", "Kdrama")
-print(emp.verificar_clave("Kdrama"))      # Debería imprimir True
+print(emp.verificar_clave("Kdrama"))     
 
 
+## Ejercicio 4
 
-## Ejercicio 2
+class Persona:
 
-class Estudiante:
-
-    def __init__(self, nombre, codigo):
+    def __init__(self, nombre, edad, documento):
         self.__nombre = None
-        self.__codigo = None
-        self.__notas = []
-        self.nombre = nombre  # Usamos el setter
-        self.codigo = codigo  # Usamos el setter
-        
+        self.__edad = None
+        self.__documento = None
+
+        self.nombre = nombre     # Usamos setter
+        self.edad = edad         # Usamos setter
+        self.documento = documento  # Usamos setter
+
+    # Getter y setter para nombre
     @property
     def nombre(self):
         return self.__nombre
-        
+
     @nombre.setter
     def nombre(self, nuevo_nombre):
         if isinstance(nuevo_nombre, str) and nuevo_nombre.strip():
             self.__nombre = nuevo_nombre.strip()
         else:
             raise ValueError("El nombre no puede estar vacío.")
-            
+
+    # Getter y setter para edad
     @property
-    def codigo(self):
-        return self.__codigo
-    @codigo.setter
-    
-    def codigo(self, nuevo_codigo):
-        if isinstance(nuevo_codigo, str) and nuevo_codigo.isalnum():
-            self.__codigo = nuevo_codigo
-        else:
-            raise ValueError("El código debe ser alfanumérico.")
-            
-    def agregar_nota(self, nota):
-        if isinstance(nota, (int, float)) and 0.0 <= nota <= 5.0:
-            self.__notas.append(float(nota))
-        else:
-            raise ValueError("La nota debe estar entre 0.0 y 5.0.")   
-            
-    def calcular_promedio(self):
-        if self.__notas:
-            return sum(self.__notas) / len(self.__notas)
-        return 0.0  
-        
-    def es_aprobado(self):
-        return self.calcular_promedio() >= 3.0
+    def edad(self):
+        return self.__edad
 
-#TESTING
-e1 = Estudiante("Cristian Conde", "A1")
-e1.agregar_nota(4.0)
-e1.agregar_nota(5.0)
-e1.agregar_nota(4.5)
+    @edad.setter
+    def edad(self, nueva_edad):
+        if isinstance(nueva_edad, int) and nueva_edad >= 0:
+            self.__edad = nueva_edad
+        else:
+            raise ValueError("La edad debe ser un número entero mayor o igual a 0.")
 
-print("Nombre:", e1.nombre)
-print("Código:", e1.codigo)
-print("Promedio:", e1.calcular_promedio())
-print("¿Aprobado?:", e1.es_aprobado())
+    # Getter y setter para documento
+    @property
+    def documento(self):
+        return self.__documento
+
+    @documento.setter
+    def documento(self, nuevo_documento):
+        if isinstance(nuevo_documento, str) and nuevo_documento.strip():
+            self.__documento = nuevo_documento.strip()
+        else:
+            raise ValueError("El documento no puede estar vacío.")
+
+#Clase hija Paciente
+class Paciente(Persona):
+
+    def __init__(self, nombre, edad, documento, diagnostico):
+        super().__init__(nombre, edad, documento)
+        self.__diagnostico = diagnostico
+        self.__historial = []
+
+    def agregar_historial(self, entrada):
+        if isinstance(entrada, str) and entrada.strip():
+            self.__historial.append(entrada.strip())
+        else:
+            raise ValueError("La entrada del historial debe ser un texto no vacío.")
+
+    def ver_historial(self):
+        return self.__historial
+
+    def ver_diagnostico(self):
+        return self.__diagnostico
+
+    # Método para modificar el diagnóstico (acceso controlado por Doctor)
+    def _modificar_diagnostico(self, nuevo_diagnostico):
+        self.__diagnostico = nuevo_diagnostico
+
+# Clase hija Doctor
+class Doctor(Persona):
+
+    def __init__(self, nombre, edad, documento, especialidad):
+        super().__init__(nombre, edad, documento)
+        self.__especialidad = especialidad
+
+    def ver_especialidad(self):
+        return self.__especialidad
+
+    def modificar_diagnostico(self, paciente, nuevo_diagnostico):
+        if isinstance(paciente, Paciente):
+            paciente._modificar_diagnostico(nuevo_diagnostico)
+            print(f"Diagnóstico actualizado para {paciente.nombre}.")
+        else:
+            print("Error: Solo se puede modificar el diagnóstico de un Paciente.")
+
+###TESTING
+
+#Crear un paciente
+paciente1 = Paciente("Juan Pérez", 30, "123456789", "Gripe")
+
+#Agregar entradas al historial
+paciente1.agregar_historial("Visita inicial: fiebre alta")
+paciente1.agregar_historial("Segunda visita: mejoría")
+
+#Crear un doctor
+doctor1 = Doctor("Dra. García", 45, "987654321", "Medicina General")
+
+#Ver información del paciente
+print(f"Nombre del paciente: {paciente1.nombre}")
+print(f"Diagnóstico actual: {paciente1.ver_diagnostico()}")
+print("Historial médico:", paciente1.ver_historial())
+
+#Doctor modifica el diagnóstico
+doctor1.modificar_diagnostico(paciente1, "Recuperado - Alta médica")
+
+#Verificar cambios
+print(f"Nuevo diagnóstico: {paciente1.ver_diagnostico()}")
 
 
 
@@ -186,7 +299,7 @@ class EmpleadoTemporal(Empleado):
     def calcular_salario(self):
         return self.sueldo_base * 0.8
 
-## TESTING
+### TESTING
 print("=== Cálculo de salarios con polimorfismo ===")
 
 empleados = [
@@ -221,7 +334,7 @@ class Barco(Transporte):
     def tipo_transporte(self):
         print("Transporte marítimo")
 
-#TESTING 
+### TESTING 
 transportes = [Coche(), Avion(), Barco()]
 
 for t in transportes:
