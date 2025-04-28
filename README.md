@@ -372,9 +372,9 @@ El polimorfismo en programación es que diferentes clases pueden tener métodos 
 Tus ejercicios en esta parte son:
 
 
-Ejercicio	Descripción general
-1. Empleados	Diferentes tipos de empleados (fijo, por horas, temporal) tienen distintos métodos para calcular su salario, aunque todos usan el mismo método calcular_salario().
-2. Transporte	Diferentes tipos de transporte (coche, avión, barco) implementan el mismo método tipo_transporte() pero cada uno imprime un tipo diferente.
+### Ejercicio	Descripción general
+1. Empleados:	Diferentes tipos de empleados (fijo, por horas, temporal) tienen distintos métodos para calcular su salario, aunque todos usan el mismo método calcular_salario().
+2. Transporte:	Diferentes tipos de transporte (coche, avión, barco) implementan el mismo método tipo_transporte() pero cada uno imprime un tipo diferente.
 ✅ Todos los objetos pueden ser tratados de la misma forma, pero su comportamiento cambia.
 ✅ Ejemplo clásico: en un for puedes recorrer distintos objetos y que cada uno actúe diferente.
 
