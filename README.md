@@ -84,6 +84,7 @@ class Empleado:
             return True
         return False
         
+#TESTING
 emp = Empleado("Fabian", "supervisor", "Hellokitty")
 print(emp.verificar_clave("Hellokitty"))  # Debería imprimir True
 emp.cambiar_clave("Hellokitty", "Kdrama")
@@ -105,6 +106,7 @@ class Estudiante:
     @property
     def nombre(self):
         return self.__nombre
+        
     @nombre.setter
     def nombre(self, nuevo_nombre):
         if isinstance(nuevo_nombre, str) and nuevo_nombre.strip():
@@ -175,6 +177,7 @@ class EmpleadoPorHoras(Empleado):
     def __init__(self, nombre, sueldo_base, horas_trabajadas):
         super().__init__(nombre, sueldo_base)
         self.horas_trabajadas = horas_trabajadas
+        
     def calcular_salario(self):
         return self.sueldo_base * self.horas_trabajadas
 
@@ -183,7 +186,7 @@ class EmpleadoTemporal(Empleado):
     def calcular_salario(self):
         return self.sueldo_base * 0.8
 
-# PROGRAMA PRINCIPAL
+## TESTING
 print("=== Cálculo de salarios con polimorfismo ===")
 
 empleados = [
@@ -197,21 +200,24 @@ for emp in empleados:
 
 ## Ejercicio 2
 
-#Clase base
+
 class Transporte:
+
     def tipo_transporte(self):
         print("Tipo de transporte genérico")
 
-#Clases hijas con su propio comportamiento
 class Coche(Transporte):
+
     def tipo_transporte(self):
         print("Transporte terrestre")
 
 class Avion(Transporte):
+
     def tipo_transporte(self):
         print("Transporte aéreo")
 
 class Barco(Transporte):
+
     def tipo_transporte(self):
         print("Transporte marítimo")
 
